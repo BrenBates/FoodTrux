@@ -4,6 +4,8 @@ Project Title: Fuud Trukx
 
 Trello Board: https://trello.com/b/fWcucCBN/project1
 
+Pencil picture layout for the web page is attached to the Trello.
+
 Sketch of the design: 
 
 Team Members: Myles, Kyle, Brennen
