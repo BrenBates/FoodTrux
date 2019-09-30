@@ -29,14 +29,78 @@
     <div class="container">
         <ul class="nav justify-content-end">
             <li class="nav-item">
-                <button id="signUp" type="button" class="btn btn-dark signUp">Sign Up</button>
+                <button id="signUp" type="button" class="btn btn-dark signUp" data-toggle="modal" data-target="#signUpModal">Sign Up</button>
             </li>
             <li class="nav-item">
-                <button id="logIn" type="button" class="btn btn-dark login">Login</button>
+                <button id="logIn" type="button" class="btn btn-dark login" data-toggle="modal" data-target="#logInModal">Login</button>
             </li>
         </ul>
 
     </div>
+
+
+
+    <!--Various Modals for User Authentication-->
+
+
+    
+    <div class="modal fade" id="signUpModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <!-- header -->
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <!-- body -->
+                <div class="modal-header">
+                  <form role="form">
+                    <div class="form-group">
+                        <input id="signup-displayname" type="text" class="form-control" placeholder="Display Name"/>
+                      <input id="signup-email" type="email" class="form-control" placeholder="Email"/>
+                      <input id="signup-password" type="password" class="form-control" placeholder="Password" />
+                    </div>
+                  </form>
+                </div>
+                <!-- footer -->
+                <div class="modal-footer">
+                  <button type='submit' id = 'signUpSubmit' class="btn btn-primary btn-block">Sign Up</button>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+    
+   
+
+    <div class="modal fade" id="logInModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <!-- header -->
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                 
+                </div>
+                <!-- body -->
+                <div class="modal-header">
+                  <form role="form">
+                    <div class="form-group">
+                        <input id="login-displayname" type="text" class="form-control" placeholder="Display Name"/>
+                      <input id="login-email" type="email" class="form-control" placeholder="Email"/>
+                      <input id="login-password" type="password" class="form-control" placeholder="Password" />
+                    </div>
+                  </form>
+                </div>
+                <!-- footer -->
+                <div class="modal-footer">
+                  <button type='submit' id = 'logInSubmit' class="btn btn-primary btn-block">Log In</button>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+
+
+          
 
 
     <!--Jquery, bootstrap, popper and link to logic.js-->
