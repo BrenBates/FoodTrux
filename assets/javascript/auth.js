@@ -16,7 +16,7 @@
                 userHTML.text(`Logged in as ${user.email}`);
 
                 //update account info
-                $('#accountInfo').append(userHTML);
+                $('#accountInfo').empty().append(userHTML);
                 //toggle UI elements
                
                 loggedOutLinks.forEach(item => item.style.display = 'none');
