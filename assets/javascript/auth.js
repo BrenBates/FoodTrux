@@ -12,12 +12,19 @@
         const setUpUI = (user) => {
           
             if (user) {
+                let userHTML = $('<div>');
+                userHTML.text(`Logged in as ${user.email}`);
+
+                //update account info
+                $('#accountInfo').append(userHTML);
                 //toggle UI elements
                
                 loggedOutLinks.forEach(item => item.style.display = 'none');
                 loggedInLinks.forEach(item => item.style.display = 'block');
                 
             } else { 
+                //hide account info 
+                $('#accountInfo').empty();
                 //toggle UI elements 
                 loggedInLinks.forEach(item => item.style.display = 'none');
                 loggedOutLinks.forEach(item => item.style.display = 'block');
@@ -61,7 +68,7 @@
 
         //listen for auth status changes
         auth.onAuthStateChanged(user => {
-            db.collection('Locations').get().then(snapshot => {
+            db.collection('Locations').onSnapshot(snapshot => {
 
             if (user) {
                   //get a snapshot of the guides collection on firestore and run the setupGuides function on it
@@ -101,11 +108,12 @@
         
         // signup a new user
 
-        const signUpForm = document.querySelector('#signUpForm');
+        const signInForm = document.querySelector("#signUpForm");
 
-
-        $('#signUpSubmit').on('click', function (event) {
+        $('#submitSignUp').on('click', function (event) {
+            console.log('hello');
             event.preventDefault();
+           
             let email = $('#signup-email').val().trim();
             let password = $('#signup-password').val().trim();
             console.log(email, password);
@@ -134,6 +142,7 @@
 
           const logInForm = document.querySelector("#logInForm")
           $('#logInSubmit').on('click', function (event) {
+            console.log('hello');
             event.preventDefault();
             let email = $('#login-email').val().trim();
             let password = $('#login-password').val().trim();
