@@ -116,15 +116,19 @@
            
             let email = $('#signup-email').val().trim();
             let password = $('#signup-password').val().trim();
-            console.log(email, password);
+            let name = $('#signup-displayname').val().trim();
+
+            console.log(email, password,name);
 
             // sign up the user using the auth method of createUserWithEmailAndPassword
             auth.createUserWithEmailAndPassword(email, password).then(cred => {
-                
-                let modal = $('#modalSignUp').modal('hide');
-                signUpForm.reset();
 
+                    return db.collection('users').doc(cred.user.uid).set({
+                        displayName: name
+                    });
             });
+            let modal = $('#modalSignUp').modal('hide');
+                signUpForm.reset();
         });
 
 
