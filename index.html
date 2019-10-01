@@ -22,7 +22,7 @@
 
 <body>
     <div class="container">
-        <ul class="nav justify-content-end">
+        <ul class="nav navbar-dark bg-dark justify-content-end mb-3">
             <li class="nav-item">
                 <button id="signUp" type="button" class="btn btn-dark signUp" data-toggle="modal" data-target="#modalSignUp">Sign Up</button>
             </li>
@@ -34,13 +34,64 @@
             </li>
         </ul>
 
+        <div class='row'>
+
+          <div class='col-md-7'>
+
+            <div class="card text-white bg-dark">
+                  <div class="card-header">
+                    Google Map
+                  </div>
+                  <div class="card-body">
+                      <div id="map"></div>
+                  </div>
+                </div>
+          </div>
+
+          <div class='col-md-4'>
+
+            
+              <div class="card text-white bg-dark">
+                  <div class="card-header dark">
+                    Search
+                  </div>
+                  <div class="card-body">
+                      <form role="form" id="searchForm">
+                          <div class="form-group">
+                            <input id="search-location" type="text" class="form-control" placeholder="Location"/>
+                            <input id="search-food" type="text" class="form-control" placeholder="Food Type"/>
+                            <input id="search truckName" type="text" class="form-control" placeholder="Food Truck Name" />
+                            <button type='submit' id = 'signUpSubmit' class="btn btn-dark btn-block">Sign Up</button>
+                          </div>
+                        </form>
+                  </div>
+                </div>
+
+
+          </div>
+
+          <div class='row'>
+            
+        <nav class="navbar navbar-dark bg-dark fixed-bottom navbar-light bg-light">
+            <p>FoodTrux Organization WorldWide © 2019</p>
+          </nav>
+
+          </div>
+
+        </div>
+
+
+
+        
+
     </div>
+
+
+    
 
 
 
     <!--Various Modals for User Authentication-->
-
-
     
     <div class="modal fade" id="modalSignUp">
             <div class="modal-dialog">
@@ -61,14 +112,13 @@
                 </div>
                 <!-- footer -->
                 <div class="modal-footer">
-                  <button type='submit' id = 'signUpSubmit' class="btn btn-primary btn-block">Sign Up</button>
+                  <button type='submit' id = 'signUpSubmit' class="btn btn-dark btn-block">Sign Up</button>
                 </div>
                 
               </div>
             </div>
           </div>
     
-   
 
     <div class="modal fade" id="modalLogIn">
             <div class="modal-dialog">
@@ -90,7 +140,7 @@
                 </div>
                 <!-- footer -->
                 <div class="modal-footer">
-                  <button type='submit' id = 'logInSubmit' class="btn btn-primary btn-block">Log In</button>
+                  <button type='submit' id = 'logInSubmit' class="btn btn-dark btn-block">Log In</button>
                 </div>
                 
               </div>
@@ -137,6 +187,7 @@
     </script>
     <script src="assets/javascript/auth.js"></script>
     <script src="assets/javascript/logic.js"></script>
+    <script src="assets/javascript/maps.js"></script>
    
 
 </body>
