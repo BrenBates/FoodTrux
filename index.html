@@ -28,14 +28,22 @@
         <button id="logIn" type="button" class="btn btn-dark login" data-toggle="modal"
           data-target="#modalLogIn">Login</button>
       </li>
-      <li class="nav-item logged-in" style="display: none;">
-        <button id="logOut" type="button" class="btn btn-dark logout">Logout</button>
-      </li>
 
+      
+      <li class="nav-item logged-in" style="display: none;">
+            <button id="accountInfoButton" type="button" class="btn btn-dark login" data-toggle="modal"
+              data-target="#modalAccountInfo">Account</button>
+    </li>
+    
+    
       <li class="nav-item logged-in" style="display: none;">
             <button id="newLocation" type="button" class="btn btn-dark login" data-toggle="modal"
               data-target="#modalNewLocation">Add New Location</button>
-          </li>
+        </li>
+
+        <li class="nav-item logged-in" style="display: none;">
+                <button id="logOut" type="button" class="btn btn-dark logout">Logout</button>
+              </li>
 
     </ul>
 
@@ -170,6 +178,30 @@
           </div>
         </div>
       </div>
+
+
+      
+  <div class="modal fade" id="modalAccountInfo">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <!-- header -->
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+    
+            </div>
+            <!-- body -->
+            <div class="modal-header">
+                Account Information
+            </div>
+            <!-- footer -->
+            <div class="modal-footer" id="accountInfo">
+            
+            </div>
+    
+          </div>
+        </div>
+      </div>
+
 
   <div class='locations'>
 
