@@ -1,0 +1,16 @@
+
+body { 
+    background-color: lightgrey;
+}
+
+input { 
+    margin: 2% 0;
+}
+
+.btn { 
+    border: 1px solid white;
+}
+
+nav { 
+    color: white;
+}
