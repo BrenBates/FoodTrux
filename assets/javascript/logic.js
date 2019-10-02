@@ -1,23 +1,22 @@
-$(window).on('load', function () { 
-    
-    // var setUpGuides = (data) => { 
+$(window).on('load', function () {     
+  
 
-    //     let html='';
-    //     data.forEach(doc => {
-    //         const guide = doc.data();
-    //         const li = `
-    //             <li>
-    //                 <div class="collapsible-header grey lighten-4">${guide.Title}</div>
-    //                 <div class ="collapsible-body white">${guide.Content}</div>
-    //             </li>
-    //         `;
-    //         html += li;
 
-    //     });
+    //Maps script 
 
-    //     $('.guides').html(html);
-    // }
+    var map; 
 
+    function createMap () { 
+        var options = { 
+            center: { lat: 43.654, lng: -79.383},
+            zoom: 10,
+            draggable: false,
+            mapTypeId: google.maps.MapTypeId.HYBRID,
+            disableDefaultUI: true
+        };
+
+        map = new google.maps.Map(document.getElementById('map'),options);
+    }
   
  
     });
