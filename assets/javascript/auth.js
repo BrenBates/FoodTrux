@@ -1,4 +1,6 @@
     $(window).on('load', function () {
+  
+        
 
         ////////////////////////////////
         // LOGIC.JS section ///////////
