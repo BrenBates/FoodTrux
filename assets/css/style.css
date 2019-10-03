@@ -1,0 +1,32 @@
+
+body { 
+    background-color: lightgrey;
+}
+
+input { 
+    margin: 2% 0;
+}
+
+.btn { 
+    border: 1px solid white;
+}
+
+nav { 
+    color: white;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+#map { 
+    height: 100%;
+}
+
+.card { 
+    height: 600px;
+}
+  
+ 
