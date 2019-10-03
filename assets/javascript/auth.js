@@ -57,9 +57,9 @@
                     const location = doc.data();
                     const li = `
                 <li>
-                    <div>${location.Address}</div>
-                    <div>${location.City}</div>
-                    <div>${location.State}</div>
+                    <div>${users.Address}</div>
+                    <div>${users.City}</div>
+                    <div>${users.State}</div>
                 </li>
             `;
                     html += li;
@@ -98,7 +98,7 @@
 
         //listen for auth status changes
         auth.onAuthStateChanged(user => {
-            db.collection('Locations').onSnapshot(snapshot => {
+            db.collection('users').onSnapshot(snapshot => {
 
                 if (user) {
                     //get a snapshot of the guides collection on firestore and run the setupGuides function on it
