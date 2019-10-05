@@ -1,6 +1,6 @@
     $(window).on('load', function () {
-  
-        
+
+
 
         ////////////////////////////////
         // LOGIC.JS section ///////////
@@ -15,14 +15,14 @@
 
 
             if (user) {
-                
-                
-                let userHTML = $('<div>');
-                
 
-                if(user.email) {
-                    userHTML.html(`Logged in as ${user.email} ` + '<br>'
-                    + `Current Location: ${user.Address}`
+
+                let userHTML = $('<div>');
+
+
+                if (user.email) {
+                    userHTML.html(`Logged in as ${user.email} ` + '<br>' +
+                        `Current Location: ${user.Address}`
                     );
                 } else {
                     // userHTML.text(`Logged in as ${user.email}`);
@@ -47,41 +47,41 @@
 
         //Example of building on the DOM with data from database. 
 
-        let setUpLocations = (data) => {
+        // let setUpLocations = (data) => {
 
-            //If there is data (since we're logged in) then put on the page necessary information.
-            if (data.length) {
+        //     //If there is data (since we're logged in) then put on the page necessary information.
+        //     if (data.length) {
 
-                let html = '';
-                data.forEach(doc => {
-                    const location = doc.data();
-                    const li = `
-                <li>
-                    <div>${location.Address}</div>
-                    <div>${location.City}</div>
-                    <div>${location.State}</div>
-                </li>
-            `;
-                    html += li;
+        //         let html = '';
+        //         data.forEach(doc => {
+        //             const location = doc.data();
+        //             const li = `
+        //         <li>
+        //             <div>${location.Address}</div>
+        //             <div>${location.City}</div>
+        //             <div>${location.State}</div>
+        //         </li>
+        //     `;
+        //             html += li;
 
-                });
+        //         });
 
 
-                $('.locations').html(html);
-                //If there is no data, show a message to login to see locations
-            } else {
-                $('.locations').html('<h5 class = "center-align">Login to view locations</h5>')
-            }
+        //         $('.locations').html(html);
+        //         //If there is no data, show a message to login to see locations
+        //     } else {
+        //         $('.locations').html('<h5 class = "center-align">Login to view locations</h5>')
+        //     }
 
-        }
+        // }
 
 
         //Query all food truck data and push to dataArray
 
         let dataArray = [];
 
-        db.collection("users").get().then(function(querySnapshot) {
-            querySnapshot.forEach(function(doc) {
+        db.collection("users").get().then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
                 // doc.data() is never undefined for query doc snapshots
                 dataArray.push(doc.data());
                 console.log('this is the data Array');
@@ -89,25 +89,31 @@
             });
         });
 
-        
+
 
 
         ////////////////////////////////
         // AUTH.JS section ///////////
         ///////////////////////////////
 
+        /////////////////////////////////////
+        // Declaring some global variables //
+        ////////////////////////////////////
+        let Latitude = '';
+        let Longitude = '';
+
         //listen for auth status changes
         auth.onAuthStateChanged(user => {
-            db.collection('Locations').onSnapshot(snapshot => {
+            db.collection('users').onSnapshot(snapshot => {
 
                 if (user) {
                     //get a snapshot of the guides collection on firestore and run the setupGuides function on it
-                    setUpLocations(snapshot.docs);
+                    // setUpLocations(snapshot.docs);
                     setUpUI(user);
 
                     console.log('user logged in: ', user);
                 } else {
-                    setUpLocations([]);
+                    // setUpLocations([]);
                     setUpUI();
                     console.log('user logged out');
                 }
@@ -132,12 +138,38 @@
                 user.Address = $('#location-address').val().trim();
                 user.City = $('#location-city').val().trim();
                 user.State = $('#location-state').val().trim();
+                user.zipCode = $('#location-zipcode').val().trim();
+                let comboAddress = user.Address + ',' + user.City + ',' + user.State;
+
+                let queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + comboAddress + "&key=AIzaSyAdHOUtsQTNZVZS5so1Sh7VW3QoaPPOOfg";
+                //what the url should look like - //https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyAdHOUtsQTNZVZS5so1Sh7VW3QoaPPOOfg;
+
+                console.log(queryURL);
+
+                // AJAX call to Google geocoding API to retrieve the address lattitude and longitude.
+
+                $.ajax({
+                    url: queryURL,
+                    method: "GET"
+                }).then(function (response) {
+
+                    console.log(response);
+                    console.log(response.results[0].geometry.location);
+
+                    Latitude = response.results[0].geometry.location.lat;
+                    Longitude = response.results[0].geometry.location.lng;
+                    console.log("this is cool", Latitude, Longitude)
 
                 db.collection('users').doc(user.uid).update({
+                   
                     Address: user.Address,
                     City: user.City,
-                    State: user.State
+                    State: user.State,
+                    zipCode: user.zipCode,
+                    Latitude: Latitude,
+                    Longitude: Longitude
                 });
+            });
             }
 
             let modal = $('#modalNewLocation').modal('hide');
@@ -155,7 +187,7 @@
             //     console.log(err.message);
             // });
 
-               
+
         });
 
 
@@ -164,14 +196,14 @@
         const signInForm = document.querySelector("#signUpForm");
 
         $('#submitSignUp').on('click', function (event) {
-            
+
             event.preventDefault();
 
             let email = $('#signup-email').val().trim();
             let password = $('#signup-password').val().trim();
             let name = $('#signup-displayname').val().trim();
 
-            
+
 
             // sign up the user using the auth method of createUserWithEmailAndPassword
             auth.createUserWithEmailAndPassword(email, password).then(cred => {
@@ -202,7 +234,7 @@
 
         const logInForm = document.querySelector("#logInForm")
         $('#logInSubmit').on('click', function (event) {
-            
+
             event.preventDefault();
             let email = $('#login-email').val().trim();
             let password = $('#login-password').val().trim();
@@ -220,4 +252,3 @@
 
 
     });
-
