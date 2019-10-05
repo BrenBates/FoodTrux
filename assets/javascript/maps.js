@@ -1,11 +1,12 @@
-
+    
+    
     //Maps script 
 
     var map, infoWindow; 
 
     function createMap () { 
         var options = { 
-            center: { lat: 40.839, lng: -111.892},
+            center: { lat: 40.7761563, lng: -111.8945562},
             zoom: 10,
             // draggable: false,
             // mapTypeId: google.maps.MapTypeId.HYBRID,
@@ -14,72 +15,37 @@
 
         map = new google.maps.Map(document.getElementById('map'),options);
 
-        infoWindow = new google.maps.InfoWindow;
+        infoWindow = new google.maps.InfoWindow; 
+        
+    var locations = [
+      ['Salt Lake City', 40.7761563, -111.8945562, 4],
+      ['Draper', 40.5247, -111.8638, 5],
+      ['Ogden', 41.2230, -111.9738, 3],
+      ['South Jordan', 40.5622, -111.9297, 2],
+      ['Sandy', 40.5650, -111.8390, 1]
+    ];
 
-        if(navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function (p) { 
-                var position = {
-                    lat: p.coords.latitude,
-                    lng: p.coords.longitude
-                };
-                console.log(position);
-                infoWindow.setPosition(position);
-                infoWindow.setContent('Your location!');
-                infoWindow.open(map);
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 10,
+      center: new google.maps.LatLng(40.7761563, -111.8945562),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
 
-            }, function () { 
-                handleLocationError('Geolocation service failed', map.center());
-            })
-        } else { 
-            handleLocationError('No geolocation available', map.center());
+    var infowindow = new google.maps.InfoWindow();
 
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
         }
-
-        var input = document.getElementById('search-location');
-        var searchBox = new google.maps.places.SearchBox(input);
-
-        //listener for bounds changed on the map, so we're only displaying info in the current bounds.
-        map.addListener('bounds_changed', function() { 
-            searchBox.setBounds(map.getBounds());
-        })
-
-        var markers = [];
-
-        searchBox.addListener('places_changed', function() { 
-            var places = searchBox.getPlaces();
-
-            if(places.length === 0) {return;}
-
-            markers.forEach(function (m) {m.setMap(null);});
-            markers = [];
-
-            var bounds = new google.maps.LatLngBounds();
-
-            places.forEach(function (p) { 
-                if (!p.geometry)
-                    return;
-
-                    markers.push(new google.maps.Marker({
-                        map: map,
-                        title: p.name,
-                        position: p.geometry.location
-                    }));
-
-                    if(p.geometry.viewport)
-                        bounds.union(p.geometry.viewport);
-                    else
-                        bounds.extend(p.geometry.location);
-            });
-            map.fitBounds(bounds);
-        });
-
-    };
-
-
-    function handleLocationError (content,position) {
-        infoWindow.setPosition(position);
-        infoWindow.setContent(content);
-        infoWindow.open(map);
+      })(marker, i));
     }
-  
- 
+}
