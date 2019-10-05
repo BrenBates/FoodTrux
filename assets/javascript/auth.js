@@ -202,6 +202,7 @@
             let email = $('#signup-email').val().trim();
             let password = $('#signup-password').val().trim();
             let name = $('#signup-displayname').val().trim();
+            let yelpCity = $('#signup-city').val().trim();
 
 
 
@@ -211,7 +212,9 @@
                 let user = firebase.auth().currentUser;
 
                 return db.collection('users').doc(user.uid).set({
-                    displayName: name
+                    displayName: name,
+                    yelpCity: yelpCity
+
                 });
             });
 
