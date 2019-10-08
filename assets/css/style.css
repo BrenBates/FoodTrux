@@ -28,5 +28,12 @@ html, body {
 .card { 
     height: 600px;
 }
+.review-insert {
+    height: 50%;
+}
+img {
+    height: 400px;
+    width: 400px;
+}
   
  
