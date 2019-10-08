@@ -2,14 +2,18 @@
 
 
 
-        ////////////////////////////////
-        // LOGIC.JS section ///////////
-        ///////////////////////////////
 
         //Toggle logged out and logged in links depending on the user state.
 
         let loggedOutLinks = document.querySelectorAll('.logged-out');
         let loggedInLinks = document.querySelectorAll('.logged-in');
+
+        /////////////////////////////////////
+        // Declaring some global variables //
+        ////////////////////////////////////
+        let Latitude = '';
+        let Longitude = '';
+
 
         const setUpUI = (user) => {
 
@@ -45,63 +49,7 @@
             }
         }
 
-        //Example of building on the DOM with data from database. 
-
-        // let setUpLocations = (data) => {
-
-        //     //If there is data (since we're logged in) then put on the page necessary information.
-        //     if (data.length) {
-
-        //         let html = '';
-        //         data.forEach(doc => {
-        //             const location = doc.data();
-        //             const li = `
-        //         <li>
-        //             <div>${location.Address}</div>
-        //             <div>${location.City}</div>
-        //             <div>${location.State}</div>
-        //         </li>
-        //     `;
-        //             html += li;
-
-        //         });
-
-
-        //         $('.locations').html(html);
-        //         //If there is no data, show a message to login to see locations
-        //     } else {
-        //         $('.locations').html('<h5 class = "center-align">Login to view locations</h5>')
-        //     }
-
-        // }
-
-
-        //Query all food truck data and push to dataArray
-
-        let dataArray = [];
-
-        db.collection("users").get().then(function (querySnapshot) {
-            querySnapshot.forEach(function (doc) {
-                // doc.data() is never undefined for query doc snapshots
-                dataArray.push(doc.data());
-                console.log('this is the data Array');
-                console.log(dataArray);
-            });
-        });
-
-
-
-
-        ////////////////////////////////
-        // AUTH.JS section ///////////
-        ///////////////////////////////
-
-        /////////////////////////////////////
-        // Declaring some global variables //
-        ////////////////////////////////////
-        let Latitude = '';
-        let Longitude = '';
-
+              
         //listen for auth status changes
         auth.onAuthStateChanged(user => {
             db.collection('users').onSnapshot(snapshot => {
@@ -142,9 +90,6 @@
                 let comboAddress = user.Address + ',' + user.City + ',' + user.State;
 
                 let queryURL = "https://maps.googleapis.com/maps/api/geocode/json?address=" + comboAddress + "&key=AIzaSyAdHOUtsQTNZVZS5so1Sh7VW3QoaPPOOfg";
-                //what the url should look like - //https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyAdHOUtsQTNZVZS5so1Sh7VW3QoaPPOOfg;
-
-                console.log(queryURL);
 
                 // AJAX call to Google geocoding API to retrieve the address lattitude and longitude.
 
@@ -153,12 +98,9 @@
                     method: "GET"
                 }).then(function (response) {
 
-                    console.log(response);
-                    console.log(response.results[0].geometry.location);
-
                     Latitude = response.results[0].geometry.location.lat;
                     Longitude = response.results[0].geometry.location.lng;
-                    console.log("this is cool", Latitude, Longitude)
+                    
 
                 db.collection('users').doc(user.uid).update({
                    
@@ -176,18 +118,6 @@
             createLocation.reset();
 
 
-            // db.collection('Locations').add({
-            //     Address: $('#location-address').val().trim(),
-            //     City: $('#location-city').val().trim(),
-            //     State: $('#location-state').val().trim()
-            // }).then(() => {
-            //     let modal = $('#modalNewLocation').modal('hide');
-            //     createLocation.reset();
-            // }).catch(err => {
-            //     console.log(err.message);
-            // });
-
-
         });
 
 
@@ -202,6 +132,7 @@
             let email = $('#signup-email').val().trim();
             let password = $('#signup-password').val().trim();
             let name = $('#signup-displayname').val().trim();
+            let yelpCity = $('#signup-city').val().trim();
 
 
 
@@ -211,7 +142,9 @@
                 let user = firebase.auth().currentUser;
 
                 return db.collection('users').doc(user.uid).set({
-                    displayName: name
+                    displayName: name,
+                    yelpCity: yelpCity
+
                 });
             });
 
@@ -252,3 +185,5 @@
 
 
     });
+
+

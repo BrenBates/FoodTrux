@@ -22,11 +22,18 @@ html, body {
   }
 
 #map { 
-    height: 100%;
+    height: 92%;
 }
 
 .card { 
     height: 600px;
+}
+.review-insert {
+    height: 50%;
+}
+img {
+    height: 400px;
+    width: 400px;
 }
   
  
