@@ -2,7 +2,7 @@ let map, infoWindow, marker;
 let locations = [];
 dataArray = [];
 let foodTruck;
-// let cors = 'https://cors-anywhere.herokuapp.com/';
+let cors = 'https://cors-anywhere.herokuapp.com/';
 let queryURL = "https://api.yelp.com/v3/businesses/"
 let city;
 let parsedFoodTruck;
@@ -56,7 +56,7 @@ function createMap() {
             console.log(parsedCity);
 
             $.ajax({
-              url: queryURL + parsedFoodTruck + "-" + parsedCity,
+              url: cors + queryURL + parsedFoodTruck + "-" + parsedCity,
               method: "GET",
               headers: {
                 "Access-Control-Allow-Origin": "*",
