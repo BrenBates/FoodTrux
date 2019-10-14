@@ -19,6 +19,14 @@ Google Maps, Google Geocoding, Yelp
 
 This is a web app that allows users to conveniently locate where food trucks are on a map.  They can click the markers on the map and see the Yelp reviews and photos for the food truck.  The site allows food truck owners to log in and adjust the location.  When they make this change it adjusts the location of their pin on the Google Maps API to reflect the change.  Food truck data is saved in a Google Firebase database.
 
+The site is loaded with several example food truck locations for actual Salt Lake City food trucks.  This is not reflective of where they currently are.  The idea is the food trucks would log in each day and update their location.
+
+Log in information for viewing a logged in user: 
+
+Email: test@test.com
+Password: test123
+This will log you in as Soho Food Park on the site.
+
 
 
    
