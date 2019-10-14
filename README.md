@@ -28,6 +28,12 @@ Password: test123
 This will log you in as Soho Food Park on the site.
 
 
+### Brennen's Responsibilities for Project: 
+Developed user authentication for login and user storage in Google Firebase.
+Implemented user input forms for Sign Up and Add New Location using Bootstrap modals.
+Managed database, assisted team by adding needed information to user data, including using Google Geocoding API to convert addresses to latitudes and longitudes.
+As team QA, assisted team to ‘glue’ all of the features together.
+
 
    
 
