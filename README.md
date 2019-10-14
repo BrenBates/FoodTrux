@@ -1,4 +1,4 @@
-###Project Title: Food Trux
+### Project Title: Food Trux
 
 Google Slides Presentation: https://docs.google.com/presentation/d/1eofDsJtEuK76JrqA6VjN5557fInw5mf4w-JOj4cII4k/edit?usp=sharing
 
