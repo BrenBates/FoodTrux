@@ -17,23 +17,20 @@ nav {
 
 html, body {
     height: 100%;
-    margin: 0;
-    padding: 0;
   }
 
 #map { 
-    height: 92%;
+    height: 99%;
 }
 
-.card { 
-    height: 600px;
+#mapCard { 
+    height: 700px;
 }
-.review-insert {
-    height: 50%;
-}
+
 .review-image {
     height: 400px;
     width: 400px;
+    padding-right: 2%;
 }
   
  
