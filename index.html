@@ -20,99 +20,108 @@
 ​
 
 <body>
-  <div class="container">
-    <ul class="nav navbar-dark bg-dark justify-content-end mb-3">
-      <li class="nav-item logged-out" style="display: none;">
-        <button id="signUp" type="button" class="btn btn-dark signUp" data-toggle="modal"
-          data-target="#modalSignUp">Sign Up</button>
-      </li>
-      <li class="nav-item logged-out" style="display: none;">
-        <button id="logIn" type="button" class="btn btn-dark login" data-toggle="modal"
-          data-target="#modalLogIn">Login</button>
-      </li>
-      ​
-      ​
-      <li class="nav-item logged-in" style="display: none;">
-        <button id="accountInfoButton" type="button" class="btn btn-dark login" data-toggle="modal"
-          data-target="#modalAccountInfo">Account</button>
-      </li>
-      ​
-      ​
-      <li class="nav-item logged-in" style="display: none;">
-        <button id="newLocation" type="button" class="btn btn-dark login" data-toggle="modal"
-          data-target="#modalNewLocation">Add New Location</button>
-      </li>
-      ​
-      <li class="nav-item logged-in" style="display: none;">
-        <button id="logOut" type="button" class="btn btn-dark logout">Logout</button>
-      </li>
-      ​
-    </ul>
-    ​
-    <div class='row'>
-      ​
-      <div class='col-md-12 col-lg-7'>
+ 
+  <div class="row">
+
+    <div class='col-md-12 col-lg-12'>
+      <ul class="nav navbar-dark bg-dark fixed-top justify-content-end">
+        <li class="nav-item logged-out" style="display: none;">
+          <button id="signUp" type="button" class="btn btn-dark signUp" data-toggle="modal"
+            data-target="#modalSignUp">Sign Up</button>
+        </li>
+        <li class="nav-item logged-out" style="display: none;">
+          <button id="logIn" type="button" class="btn btn-dark login" data-toggle="modal"
+            data-target="#modalLogIn">Login</button>
+        </li>
         ​
-        <div class="card text-black bg-dark">
-          <div class="card-header">
-            Google Map
-          </div>
-          <div class="card-body">
-            <div id="map">
-              ​
-            </div>
+        ​
+        <li class="nav-item logged-in" style="display: none;">
+          <button id="accountInfoButton" type="button" class="btn btn-dark login" data-toggle="modal"
+            data-target="#modalAccountInfo">Account</button>
+        </li>
+        ​
+        ​
+        <li class="nav-item logged-in" style="display: none;">
+          <button id="newLocation" type="button" class="btn btn-dark login" data-toggle="modal"
+            data-target="#modalNewLocation">Add New Location</button>
+        </li>
+        ​
+        <li class="nav-item logged-in" style="display: none;">
+          <button id="logOut" type="button" class="btn btn-dark logout">Logout</button>
+        </li>
+        ​
+      </ul>
+    </div>
+  </div>
+
+  ​
+  <div class='row'>
+    ​
+    <div class='col-md-12 col-lg-12'>
+      ​
+      <div class="card bg-dark" id="mapCard">
+        <div class="card-body">
+          <div id="map">
+            ​
           </div>
         </div>
       </div>
+    </div>
+    ​
+    
+    ​
+    <div class='row'>
       ​
-      <div class='col-md-12 col-lg-5'>
+      <nav class="navbar navbar-dark bg-dark fixed-bottom navbar-light bg-light">
+        <p>FoodTrux Organization WorldWide © 2019</p>
+      </nav>
+      ​
+    </div>
+    ​
+  </div>
+  
+  <div class="row">
+
+    <div class="col-md-12 col-lg-6 ">
+      <br>
+      <div class="card bg-dark text-white">
+      <div class="card-body">
+        <div class="review-insert">
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <div class='col-md-12 col-lg-6'>
         ​
-        <div class="card text-white bg-dark">
-          <div class="card-header dark">
+        <div class="card bg-dark text-white">
+          <div class="card-header bg-dark">
             Search
           </div>
-          <div class="card-body">
+          <div class="card-body" id="searchCard">
             <form role="form" id="searchForm">
               <div class="form-group">
                 <input id="search-location" type="text" class="form-control" placeholder="Location" />
                 <input id="search-food" type="text" class="form-control" placeholder="Food Type" />
                 <input id="search truckName" type="text" class="form-control" placeholder="Food Truck Name" />
                 <button type='submit' id='searchSubmit' class="btn btn-dark btn-block">Search</button>
-                <br>
-                <div class="card-header dark">
+                
+                <div class="card-header bg-dark">
                   Write a Review
                 </div>
                 <input id="review-storename" type="text" class="form-control" placeholder="Store Name" />
                 <textarea id="review-review" type="text" class="form-control" placeholder="Your Review"></textarea>
                 <button type='submit' id='searchSubmit' class="btn btn-dark btn-block">Submit</button>
-
+  
               </div>
             </form>
           </div>
         </div>
       </div>
-      ​
-      <div class='row'>
-        ​
-        <nav class="navbar navbar-dark bg-dark fixed-bottom navbar-light bg-light">
-          <p>FoodTrux Organization WorldWide © 2019</p>
-        </nav>
-        ​
-      </div>
-      ​
-    </div>
-    <br>
-    <div class="row">
-      <div class="col-lg-12 col-md-12">
-        <div class="card-body bg-dark text-white">
-          <div class="review-insert">
-          </div>
-        </div>
-      </div>
 
-    </div>
-    ​
   </div>
+  ​
+
   ​
   <!--Various Modals for User Authentication-->
   ​
@@ -255,17 +264,18 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
+  </script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
+  </script>
   ​
   <script src="assets/javascript/auth.js" type="text/javascript"></script>
   ​
   <!--Google Maps and Yelp Review Script-->
   <script src="assets/javascript/mapsandyelp.js"></script>
   <script async defer
-    src="https://maps.googleapis.com/maps/api/js?callback=createMap&libraries=places&key=AIzaSyAdHOUtsQTNZVZS5so1Sh7VW3QoaPPOOfg"></script>
+    src="https://maps.googleapis.com/maps/api/js?callback=createMap&libraries=places&key=AIzaSyAdHOUtsQTNZVZS5so1Sh7VW3QoaPPOOfg">
+  </script>
 
 
 </body>
