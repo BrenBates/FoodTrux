@@ -21,7 +21,7 @@ This is a web app that allows users to conveniently locate where food trucks are
 
 The site is loaded with several example food truck locations for actual Salt Lake City food trucks.  This is not reflective of where they currently are.  The idea is the food trucks would log in each day and update their location.
 
-Log in information for viewing a logged in user: 
+### Log in information for viewing a logged in user: 
 
 Email: test@test.com
 Password: test123
